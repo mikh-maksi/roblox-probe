@@ -1,5 +1,6 @@
 # Task
 `ServerScriptService`
+```lua
 --Изменяем цвет куба
 game.Workspace.Part.BrickColor = BrickColor.new(0.9,0.6,0.2)
 game.Workspace.Part.BrickColor = BrickColor.new(0.2,0.6,0.2)
@@ -13,9 +14,10 @@ function printFood()
 end
 
 printFood()
-
+```
 # Task2
 `FirePart`
+```lua
 local firePart = script.Parent
 
 local function stopFire()
@@ -38,9 +40,10 @@ wait(3)
 stopFire()
 wait(3)
 destroyBlock()
+```
 # Task3
 `Part`
-
+```lua
 local loopingPart = script.Parent
 
 while true do
@@ -49,10 +52,10 @@ while true do
 	loopingPart.BrickColor = BrickColor.new(0.2,0.6,0.2)
 	wait(3)
 end
-
+```
 # Task4
 `Part`
-
+```lua
 local loopingPart = script.Parent
 
 while true do
@@ -61,8 +64,10 @@ while true do
 	loopingPart.BrickColor = BrickColor.new(0.2,0.6,0.2)
 	wait(3)
 end
+```
 # Task5
 `Base Block Yellow (trap)`
+```lua
 local trap = script.Parent
 
 
@@ -80,13 +85,11 @@ end
 
 -- Connects onTouch() to Touched event
 trap.Touched:Connect(onTouch)
-
-total = 0
-
+```
 
 # Task6
 `Base Block Red (trap)`
-
+```lua
 local trap = script.Parent
 trap.BrickColor = BrickColor.new(0.9,0,0)
 
@@ -109,5 +112,5 @@ end
 
 -- Connects onTouch() to Touched event
 trap.Touched:Connect(onTouch)
-# Task7
+```
 
