@@ -1,4 +1,4 @@
-# Task
+## Колір елементу - задаємо програмно
 `ServerScriptService`
 ```lua
 --Изменяем цвет куба
@@ -15,7 +15,7 @@ end
 
 printFood()
 ```
-# Task2
+## 2. Додаємо властивість - вогонь.
 `FirePart`
 ```lua
 local firePart = script.Parent
@@ -41,7 +41,7 @@ stopFire()
 wait(3)
 destroyBlock()
 ```
-# Task3
+## 3. Задаємо унікальну особливість елементу - періодичну зміну кольору
 `Part`
 ```lua
 local loopingPart = script.Parent
@@ -53,19 +53,8 @@ while true do
 	wait(3)
 end
 ```
-# Task4
-`Part`
-```lua
-local loopingPart = script.Parent
 
-while true do
-	loopingPart.BrickColor = BrickColor.new(0.9,0.6,0.2)
-	wait(3)
-	loopingPart.BrickColor = BrickColor.new(0.2,0.6,0.2)
-	wait(3)
-end
-```
-# Task5
+# 4. При торканні блоку - він зникає
 `Base Block Yellow (trap)`
 ```lua
 local trap = script.Parent
@@ -87,7 +76,7 @@ end
 trap.Touched:Connect(onTouch)
 ```
 
-# Task6
+# 5. При торканні блоку - він вбиває
 `Base Block Red (trap)`
 ```lua
 local trap = script.Parent
