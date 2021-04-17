@@ -92,6 +92,28 @@ trap.Touched:Connect(onTouch)
 ```
 
 # 6. Додадаємо бали
+До скрипту в корні
+```lua
+--In ServerScriptService, create a script named PlayerSetup with the contents below.
+
+local function onPlayerJoin(player)
+	local leaderstats = Instance.new("Folder")
+	leaderstats.Name = "leaderstats"
+	leaderstats.Parent = player
+
+	-- Example of a IntValue
+	local points = Instance.new("IntValue")
+	points.Name = "Points"
+	points.Value = 0
+	points.Parent = leaderstats
+
+end
+
+-- Run onPlayerJoin when the PlayerAdded event fires
+game.Players.PlayerAdded:Connect(onPlayerJoin)
+```
+
+До скрипту елементу
 ```lua
 local pointPart = script.Parent
 
