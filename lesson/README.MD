@@ -1,19 +1,9 @@
 ## Колір елементу - задаємо програмно
 `ServerScriptService`
 ```lua
---Изменяем цвет куба
-game.Workspace.Part.BrickColor = BrickColor.new(0.9,0.6,0.2)
-game.Workspace.Part.BrickColor = BrickColor.new(0.2,0.6,0.2)
-game.Workspace.Part.BrickColor = BrickColor.new(0.8,0.2,0.8)
+elem = script.Parent
+elem.BrickColor = BrickColor.new(0.9,0.6,0.2)
 
-
-total = 0
-function printFood()
-	print("Curry!")
-	total = 1
-end
-
-printFood()
 ```
 ## 2. Додаємо властивість - вогонь.
 `FirePart`
@@ -21,13 +11,11 @@ printFood()
 local firePart = script.Parent
 
 local function stopFire()
-	wait(2)
 	-- Destroy the fire instance
 	firePart.Fire:Destroy()
 	-- Add a new particle instance to the part
 	local spark = Instance.new("ParticleEmitter")
 	spark.Parent = firePart
-	wait(3)
 	--firePart:Destroy()
 	
 end
@@ -103,3 +91,69 @@ end
 trap.Touched:Connect(onTouch)
 ```
 
+# 6. Додадаємо бали
+```lua
+local pointPart = script.Parent
+
+local blue = Color3.fromRGB(0, 0, 255)
+local green = Color3.fromRGB(0, 255, 0)
+local red = Color3.fromRGB(255 ,0, 0)
+
+local smallPoints = 10
+local largePoints = 50
+local losePoints = 100
+
+local Players = game:GetService("Players")
+
+local function givePoints(player)
+	local currentColor = pointPart.Color
+
+	local playerStats = player:WaitForChild("leaderstats")
+	local playerPoints = playerStats:WaitForChild("Points")
+
+	if currentColor == blue then
+		playerPoints.Value = playerPoints.Value + smallPoints	
+	elseif currentColor == green then
+		playerPoints.Value = playerPoints.Value + largePoints
+	else
+		playerPoints.Value = playerPoints.Value - losePoints	
+	end
+
+
+	pointPart:Destroy()
+
+	local playerCharacter = player.Character
+	local particle = Instance.new("ParticleEmitter")
+	particle.Color = ColorSequence.new(currentColor)
+	particle.Parent = playerCharacter:WaitForChild("Head")
+	wait(1)
+	particle:Destroy()
+
+end
+
+
+
+local function partTouched(otherPart)
+	--local player = Players:GetPlayerFromCharacter(otherPart.Parent)
+	local player = game.Players:GetPlayerFromCharacter(otherPart.Parent)
+
+	if player then
+		givePoints(player)
+	end
+end
+
+
+pointPart.Touched:Connect(partTouched)
+
+
+-- Changes the color of the part based on variables. Needs to be at bottom of script. 
+while true do
+	pointPart.Color = blue
+	wait(4)
+	pointPart.Color = green
+	wait(3)
+	pointPart.Color = red
+	wait(2)
+end
+
+```
