@@ -1,26 +1,27 @@
 ## Колір елементу - задаємо програмно
+
 `ServerScriptService`
+
 ```lua
-elem = script.Parent
-elem.BrickColor = BrickColor.new(0.9,0.6,0.2)
+element = script.Parent
+element.BrickColor = BrickColor.new(0.9,0.6,0.2)
 
 ```
+
 ## 2. Додаємо властивість - вогонь.
-`FirePart`
+
 ```lua
-local firePart = script.Parent
+local element = script.Parent
 
 local function stopFire()
-	-- Destroy the fire instance
-	firePart.Fire:Destroy()
-	-- Add a new particle instance to the part
+	element.Fire:Destroy()
 	local spark = Instance.new("ParticleEmitter")
-	spark.Parent = firePart
-	--firePart:Destroy()
-	
+	spark.Parent = element
+	--element:Destroy()
+
 end
 local function destroyBlock()
-	firePart:Destroy()
+	element:Destroy()
 end
 
 
@@ -29,21 +30,26 @@ stopFire()
 wait(3)
 destroyBlock()
 ```
+
 ## 3. Задаємо унікальну особливість елементу - періодичну зміну кольору
+
 `Part`
+
 ```lua
-local loopingPart = script.Parent
+local element = script.Parent
 
 while true do
-	loopingPart.BrickColor = BrickColor.new(0.9,0.6,0.2)
+	element.BrickColor = BrickColor.new(0.9,0.6,0.2)
 	wait(3)
-	loopingPart.BrickColor = BrickColor.new(0.2,0.6,0.2)
+	element.BrickColor = BrickColor.new(0.2,0.6,0.2)
 	wait(3)
 end
 ```
 
 # 4. При торканні блоку - він зникає
+
 `Base Block Yellow (trap)`
+
 ```lua
 local trap = script.Parent
 
@@ -65,7 +71,9 @@ trap.Touched:Connect(onTouch)
 ```
 
 # 5. При торканні блоку - він вбиває
+
 `Base Block Red (trap)`
+
 ```lua
 local trap = script.Parent
 trap.BrickColor = BrickColor.new(0.9,0,0)
@@ -92,7 +100,9 @@ trap.Touched:Connect(onTouch)
 ```
 
 # 6. Додадаємо бали
+
 До скрипту в корні
+
 ```lua
 --In ServerScriptService, create a script named PlayerSetup with the contents below.
 
@@ -114,6 +124,7 @@ game.Players.PlayerAdded:Connect(onPlayerJoin)
 ```
 
 До скрипту елементу
+
 ```lua
 local pointPart = script.Parent
 
@@ -134,11 +145,11 @@ local function givePoints(player)
 	local playerPoints = playerStats:WaitForChild("Points")
 
 	if currentColor == blue then
-		playerPoints.Value = playerPoints.Value + smallPoints	
+		playerPoints.Value = playerPoints.Value + smallPoints
 	elseif currentColor == green then
 		playerPoints.Value = playerPoints.Value + largePoints
 	else
-		playerPoints.Value = playerPoints.Value - losePoints	
+		playerPoints.Value = playerPoints.Value - losePoints
 	end
 
 
@@ -168,7 +179,7 @@ end
 pointPart.Touched:Connect(partTouched)
 
 
--- Changes the color of the part based on variables. Needs to be at bottom of script. 
+-- Changes the color of the part based on variables. Needs to be at bottom of script.
 while true do
 	pointPart.Color = blue
 	wait(4)
