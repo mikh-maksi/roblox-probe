@@ -17,9 +17,8 @@ local function stopFire()
 	element.Fire:Destroy()
 	local spark = Instance.new("ParticleEmitter")
 	spark.Parent = element
-	--element:Destroy()
-
 end
+
 local function destroyBlock()
 	element:Destroy()
 end
