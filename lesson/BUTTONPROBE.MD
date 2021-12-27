@@ -1,9 +1,10 @@
 ```lua
-local button = script.Parent
-
-local function onButtonActivated()
-	Instance.new("Explosion").Parent = Workspace
+local function boom()
+	exp = Instance.new("Explosion")	
+	exp.Position = Workspace.Part.Position
+	exp.Parent = Workspace
 end
 
-button.Activated:Connect(onButtonActivated)
+script.Parent.Activated:Connect(boom)
+
 ```
