@@ -47,9 +47,13 @@ local function givePoints(player)
 
 	if currentColor == blue then
 		playerPoints.Value = playerPoints.Value + smallPoints
-	elseif currentColor == green then
+	
+    
+    elseif currentColor == green then
 		playerPoints.Value = playerPoints.Value + largePoints
-	else
+	
+    
+    else
 		local playerCharacter = player.Character
 
 		local particle = Instance.new("Explosion")
@@ -84,5 +88,47 @@ while true do
 	pointPart.Color = red
 	wait(2)
 end
-
 ```
+
+## Створення блоку, що вибухає при доторканні
+Додаємо скрипт до об'єкту, який буде вибухати  
+<img src = "img/explosion.png">  
+
+Додамо наступний код до скрипту
+
+```lua
+--отримуємо значення блоку
+local pointPart = script.Parent
+
+
+--функція, що виконується при торканні до блоку
+local function partTouched(otherPart)
+	-- отримаємо гравця в змінну player
+	local player = game.Players:GetPlayerFromCharacter(otherPart.Parent)
+	-- якщо ми отримали гравця, тобто змінна player не дорівнює 0.
+	if player then
+		-- отримаємо персонажа гравця
+		local playerCharacter = player.Character
+		-- Створюємо нову сутність "Вибух"
+		local particle = Instance.new("Explosion")
+		-- задаємо позицію вибуху таку саму, що і блок
+		particle.Position = pointPart.Position
+
+		-- робимо батьківським блоком для вибуху - гравця
+		particle.Parent = playerCharacter:WaitForChild("Head")
+		-- чекаємо 3 мілісекунди
+		wait(3)
+		-- знищуємо вибух
+		particle:Destroy()
+	end
+end
+
+
+-- подія торкання до блоку.
+pointPart.Touched:Connect(partTouched)
+```
+
+## Завдання
+1. Зробити декілька блоків, які змінюють кольори і від цьоо начисляється різа кількість балів.
+2. Зробити паркур із блоками, які дають бали, зменшують здоров'я або зовсім вбивають.
+3. Зробити елемент, який вибухає при торканні.
